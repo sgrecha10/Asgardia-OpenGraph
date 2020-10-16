@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Graph to JSON</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'opengraph/styles.css' %}">
+</head>
+<body>
+    <div role="main" class="container clearfix">
+        <h1>Open Graph parser</h1>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <form method="post" action="{% url 'index' %}">{% csrf_token %}
+            {% if form.url.errors %}
+                {% for error in form.url.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+            <p>{{ form.url }} <input type="submit" value="Get URL"></p>
+        </form>
+        {% if json_data %}
+        <div class="json-wrapper">
+            <h2>JSON</h2>
+            {{ json_data }}
+        </div>
+        {% endif %}
+        {% if list_data %}
+        <hr>
+        <h2>List data</h2>
+        <table class="table table-hover">
+            {% for item in list_data %}
+            <tr>
+                <td>{{ item }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+
+</body>
+</html>

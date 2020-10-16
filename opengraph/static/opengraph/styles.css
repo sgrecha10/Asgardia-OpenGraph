@@ -1,0 +1,10 @@
+body{
+    padding-top: 6.5rem;
+}
+.url-field{
+    width: 400px !important;
+}
+
+.json-wrapper{
+    margin-top: 1em;
+}
