@@ -50,8 +50,8 @@ class OpenGraph:
         try:
             with urllib.request.urlopen(self.url) as raw:
                 return raw.read().decode('utf-8')
-        except Exception:
-            self.messages.append('Ошибка URL или ошибка удаленного сервера')
+        except Exception as _:
+            self.messages.append('Ошибка URL или ошибка удаленного сервера: ' + str(_))
             return None
 
     def _to_parse(self) -> None:
