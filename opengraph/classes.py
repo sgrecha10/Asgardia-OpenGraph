@@ -30,6 +30,9 @@ class ExtendedHtmlParser(HTMLParser):
         """This method returns a list of meta tags"""
         return self.data
 
+    def error(self, message):
+        pass
+
 
 class OpenGraph:
     """This end-class receives a URL.
